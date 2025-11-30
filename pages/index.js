@@ -9,7 +9,7 @@ export default function HomePage() {
     "name": "Разнорабочие Сочи",
     "description": "Разнорабочие на день в Сочи по фиксированной цене",
     "url": "https://raznorabochie-sochi.ru",
-    "telephone": "+7XXXXXXXXXX",
+    "telephone": "+79138907262",
     "priceRange": "₽₽",
     "areaServed": {
       "@type": "City",
@@ -17,7 +17,9 @@ export default function HomePage() {
     },
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Сочи",
+      "streetAddress": "ул. Ленина, 129",
+      "addressLocality": "Адлер",
+      "addressRegion": "Краснодарский край",
       "addressCountry": "RU"
     }
   };
@@ -56,13 +58,13 @@ export default function HomePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const phone = "+7XXXXXXXXXX";
+    const phone = "+79138907262";
     const text = `Новая заявка с сайта:%0A%0AИмя: ${formData.name}%0AТелефон: ${formData.phone}%0AРайон: ${formData.district}%0AЗадача: ${formData.task}`;
     window.open(`https://wa.me/${phone.replace(/\D/g, "")}?text=${text}`, "_blank");
   };
 
   const handleWhatsAppClick = () => {
-    const phone = "+7XXXXXXXXXX";
+    const phone = "+79138907262";
     window.open(`https://wa.me/${phone.replace(/\D/g, "")}`, "_blank");
   };
 

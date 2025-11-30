@@ -17,7 +17,7 @@ export default function ContactForm({ variant = "default" }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const phone = "+7XXXXXXXXXX";
+    const phone = "+79138907262";
     const text = `Новая заявка с сайта:%0A%0AИмя: ${formData.name}%0AТелефон: ${formData.phone}%0AРайон: ${formData.district}%0A${formData.task ? `Задача: ${formData.task}%0A` : ""}${formData.message ? `Сообщение: ${formData.message}` : ""}`;
     
     window.open(`https://wa.me/${phone.replace(/\D/g, "")}?text=${text}`, "_blank");
