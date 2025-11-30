@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ContactForm from "../components/ContactForm";
 
 export default function UslugiPage() {
   return (
@@ -9,6 +10,10 @@ export default function UslugiPage() {
           name="description"
           content="Услуги разнорабочих в Сочи для частных и юридических лиц: погрузка и разгрузка, подсобные работы на стройке, монолит, демонтаж, вынос мусора, помощь на участке. Фиксированная цена за смену."
         />
+        <meta property="og:title" content="Услуги разнорабочих в Сочи — Разнорабочие Сочи" />
+        <meta property="og:description" content="Услуги разнорабочих в Сочи для частных и юридических лиц. Фиксированная цена за смену." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://raznorabochie-sochi.ru/uslugi" />
       </Head>
 
       <div className="container">
@@ -111,42 +116,7 @@ export default function UslugiPage() {
             мы подберём подходящих людей и согласуем время.
           </p>
 
-          <div className="form-card">
-            <div className="form-group">
-              <label className="label" htmlFor="name">
-                Имя
-              </label>
-              <input className="input" id="name" placeholder="Как к вам обращаться" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="phone">
-                Телефон
-              </label>
-              <input className="input" id="phone" placeholder="Ваш номер телефона" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="direction">
-                Направление работ
-              </label>
-              <input
-                className="input"
-                id="direction"
-                placeholder="Погрузка, монолит, подсобные работы, участок..."
-              />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="district">
-                Район
-              </label>
-              <input className="input" id="district" placeholder="Сочи, Адлер, Дагомыс, Красная Поляна..." />
-            </div>
-            <button className="btn-primary" type="button">
-              Оставить заявку
-            </button>
-            <p className="hero-note" style={{ marginTop: 8 }}>
-              Свяжемся с вами в течение 15–30 минут и предложим решение под вашу задачу.
-            </p>
-          </div>
+          <ContactForm variant="services" />
         </section>
       </div>
     </>

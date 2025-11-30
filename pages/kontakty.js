@@ -1,6 +1,16 @@
 import Head from "next/head";
+import ContactForm from "../components/ContactForm";
 
 export default function KontaktyPage() {
+  const handleWhatsAppClick = () => {
+    const phone = "+7XXXXXXXXXX";
+    window.open(`https://wa.me/${phone.replace(/\D/g, "")}`, "_blank");
+  };
+
+  const handleTelegramClick = () => {
+    window.open(`https://t.me/+7XXXXXXXXXX`, "_blank");
+  };
+
   return (
     <>
       <Head>
@@ -9,6 +19,10 @@ export default function KontaktyPage() {
           name="description"
           content="Контакты сервиса Разнорабочие Сочи: телефон, мессенджеры, время работы и форма обратной связи. Работаем по всему Большому Сочи — от Дагомыса до Красной Поляны."
         />
+        <meta property="og:title" content="Контакты — Разнорабочие Сочи" />
+        <meta property="og:description" content="Контакты сервиса Разнорабочие Сочи: телефон, мессенджеры, время работы." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://raznorabochie-sochi.ru/kontakty" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>
@@ -36,10 +50,10 @@ export default function KontaktyPage() {
               <p className="card-tagline">Удобно отправить адрес, фото и задачу.</p>
               <ul className="card-list">
                 <li>
-                  <a href="#">WhatsApp</a>
+                  <a href="#" onClick={(e) => { e.preventDefault(); handleWhatsAppClick(); }} style={{ cursor: 'pointer', color: 'var(--accent)' }}>WhatsApp</a>
                 </li>
                 <li>
-                  <a href="#">Telegram</a>
+                  <a href="#" onClick={(e) => { e.preventDefault(); handleTelegramClick(); }} style={{ cursor: 'pointer', color: 'var(--accent)' }}>Telegram</a>
                 </li>
               </ul>
             </div>
@@ -74,42 +88,7 @@ export default function KontaktyPage() {
             детали и предложим решение под ваш объект.
           </p>
 
-          <div className="form-card">
-            <div className="form-group">
-              <label className="label" htmlFor="name">
-                Имя
-              </label>
-              <input className="input" id="name" placeholder="Как к вам обращаться" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="phone">
-                Телефон
-              </label>
-              <input className="input" id="phone" placeholder="Ваш номер телефона" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="district">
-                Район
-              </label>
-              <input className="input" id="district" placeholder="Сочи, Адлер, Дагомыс, Красная Поляна..." />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="message">
-                Кратко опишите задачу
-              </label>
-              <textarea
-                className="textarea"
-                id="message"
-                placeholder="Например: нужны 2 разнорабочих на погрузку строительных материалов завтра к 10:00"
-              />
-            </div>
-            <button className="btn-primary" type="button">
-              Отправить
-            </button>
-            <p className="hero-note" style={{ marginTop: 8 }}>
-              Свяжемся с вами в течение 15–30 минут в рабочее время.
-            </p>
-          </div>
+          <ContactForm variant="contact" />
         </section>
       </div>
     </>

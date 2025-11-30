@@ -1,6 +1,75 @@
 import Head from "next/head";
+import { useState } from "react";
+import JsonLd from "../components/JsonLd";
 
 export default function HomePage() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Разнорабочие Сочи",
+    "description": "Разнорабочие на день в Сочи по фиксированной цене",
+    "url": "https://raznorabochie-sochi.ru",
+    "telephone": "+7XXXXXXXXXX",
+    "priceRange": "₽₽",
+    "areaServed": {
+      "@type": "City",
+      "name": "Сочи"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Сочи",
+      "addressCountry": "RU"
+    }
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Разнорабочие",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Разнорабочие Сочи"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Сочи"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "4500",
+      "priceCurrency": "RUB",
+      "description": "8 часов работы одного разнорабочего"
+    }
+  };
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    district: "",
+    task: "",
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const phone = "+7XXXXXXXXXX";
+    const text = `Новая заявка с сайта:%0A%0AИмя: ${formData.name}%0AТелефон: ${formData.phone}%0AРайон: ${formData.district}%0AЗадача: ${formData.task}`;
+    window.open(`https://wa.me/${phone.replace(/\D/g, "")}?text=${text}`, "_blank");
+  };
+
+  const handleWhatsAppClick = () => {
+    const phone = "+7XXXXXXXXXX";
+    window.open(`https://wa.me/${phone.replace(/\D/g, "")}`, "_blank");
+  };
+
+  const scrollToForm = () => {
+    document.querySelector('.form-card')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <Head>
@@ -9,6 +78,16 @@ export default function HomePage() {
           name="description"
           content="Разнорабочие на день в Сочи по фиксированной цене — 4500 ₽ за 8 часов работы. Погрузка, разгрузка, подсобные работы, помощь при ремонте и на участке по всему Большому Сочи."
         />
+        <meta property="og:title" content="Разнорабочие Сочи — разнорабочие на день в Сочи" />
+        <meta property="og:description" content="Разнорабочие на день в Сочи по фиксированной цене — 4500 ₽ за 8 часов работы. Погрузка, разгрузка, подсобные работы по всему Большому Сочи." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Разнорабочие Сочи — разнорабочие на день в Сочи" />
+        <meta name="twitter:description" content="Разнорабочие на день в Сочи по фиксированной цене — 4500 ₽ за 8 часов работы." />
+        <link rel="canonical" href="https://raznorabochie-sochi.ru/" />
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={serviceSchema} />
       </Head>
       <div className="container">
       <section className="hero">
@@ -26,8 +105,8 @@ export default function HomePage() {
           </div>
 
           <div className="hero-cta">
-            <button className="btn-primary">Заказать разнорабочих</button>
-            <button className="btn-secondary">Написать в WhatsApp</button>
+            <button className="btn-primary" onClick={scrollToForm}>Заказать разнорабочих</button>
+            <button className="btn-secondary" onClick={handleWhatsAppClick}>Написать в WhatsApp</button>
           </div>
 
           <p className="hero-note">
@@ -36,46 +115,66 @@ export default function HomePage() {
         </div>
 
         <aside className="hero-card">
-          <div className="form-card" style={{ maxWidth: "100%", boxShadow: "none", margin: 0 }}>
+          <form className="form-card" style={{ maxWidth: "100%", boxShadow: "none", margin: 0 }} onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="label" htmlFor="hero-name">
+              <label className="label" htmlFor="name">
                 Имя
               </label>
-              <input className="input" id="hero-name" placeholder="Как к вам обращаться" />
+              <input 
+                className="input" 
+                id="name" 
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Как к вам обращаться" 
+                required
+              />
             </div>
             <div className="form-group">
-              <label className="label" htmlFor="hero-phone">
+              <label className="label" htmlFor="phone">
                 Телефон
               </label>
-              <input className="input" id="hero-phone" placeholder="Ваш номер телефона" />
+              <input 
+                className="input" 
+                id="phone" 
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Ваш номер телефона" 
+                required
+              />
             </div>
             <div className="form-group">
-              <label className="label" htmlFor="hero-district">
+              <label className="label" htmlFor="district">
                 Район
               </label>
               <input
                 className="input"
-                id="hero-district"
+                id="district"
+                value={formData.district}
+                onChange={handleChange}
                 placeholder="Сочи, Адлер, Дагомыс, Красная Поляна..."
+                required
               />
             </div>
             <div className="form-group">
-              <label className="label" htmlFor="hero-task">
+              <label className="label" htmlFor="task">
                 Какие работы нужны
               </label>
               <input
                 className="input"
-                id="hero-task"
+                id="task"
+                value={formData.task}
+                onChange={handleChange}
                 placeholder="Погрузка, подсобные работы, помощь на стройке..."
               />
             </div>
-            <button className="btn-primary" type="button">
+            <button className="btn-primary" type="submit">
               Оставить заявку
             </button>
             <p className="hero-note" style={{ marginTop: 8 }}>
               Свяжемся с вами в течение 15–30 минут и подберём рабочих под задачу.
             </p>
-          </div>
+          </form>
         </aside>
       </section>
 

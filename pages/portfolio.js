@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ContactForm from "../components/ContactForm";
 
 export default function PortfolioPage() {
   return (
@@ -9,6 +10,10 @@ export default function PortfolioPage() {
           name="description"
           content="Примеры работ сервиса Разнорабочие Сочи: погрузка, разгрузка, подсобные работы и помощь на объектах в Сочи, Адлере, Дагомысе и Красной Поляне."
         />
+        <meta property="og:title" content="Портфолио работ — Разнорабочие Сочи" />
+        <meta property="og:description" content="Примеры работ сервиса Разнорабочие Сочи: погрузка, разгрузка, подсобные работы." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://raznorabochie-sochi.ru/portfolio" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>
@@ -69,42 +74,7 @@ export default function PortfolioPage() {
             Опишите свой объект и задачу — подберём рабочих и предложим решение под
             ваш район Сочи.
           </p>
-          <div className="form-card">
-            <div className="form-group">
-              <label className="label" htmlFor="name">
-                Имя
-              </label>
-              <input className="input" id="name" placeholder="Как к вам обращаться" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="phone">
-                Телефон
-              </label>
-              <input className="input" id="phone" placeholder="Ваш номер телефона" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="district">
-                Район
-              </label>
-              <input className="input" id="district" placeholder="Сочи, Адлер, Дагомыс, Красная Поляна..." />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="task">
-                Кратко опишите задачу
-              </label>
-              <input
-                className="input"
-                id="task"
-                placeholder="Например: нужна бригада на разгрузку и подсобные работы"
-              />
-            </div>
-            <button className="btn-primary" type="button">
-              Оставить заявку
-            </button>
-            <p className="hero-note" style={{ marginTop: 8 }}>
-              Свяжемся с вами в течение 15–30 минут и обсудим детали.
-            </p>
-          </div>
+          <ContactForm />
         </section>
       </div>
     </>
