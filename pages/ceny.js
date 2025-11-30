@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ContactForm from "../components/ContactForm";
 
 export default function CenyPage() {
   return (
@@ -9,6 +10,10 @@ export default function CenyPage() {
           name="description"
           content="Фиксированная цена на услуги разнорабочих в Сочи — 4500 ₽ за 8 часов работы одного рабочего. Что входит в стоимость, доплаты и условия для юридических лиц."
         />
+        <meta property="og:title" content="Цены на услуги разнорабочих в Сочи" />
+        <meta property="og:description" content="Фиксированная цена на услуги разнорабочих в Сочи — 4500 ₽ за 8 часов работы." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://raznorabochie-sochi.ru/ceny" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>
@@ -127,46 +132,7 @@ export default function CenyPage() {
             оптимальный вариант и подтвердим стоимость.
           </p>
 
-          <div className="form-card">
-            <div className="form-group">
-              <label className="label" htmlFor="name">
-                Имя
-              </label>
-              <input className="input" id="name" placeholder="Как к вам обращаться" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="phone">
-                Телефон
-              </label>
-              <input className="input" id="phone" placeholder="Ваш номер телефона" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="workers">
-                Количество рабочих и смен
-              </label>
-              <input
-                className="input"
-                id="workers"
-                placeholder="Например: 2 разнорабочих на 3 смены"
-              />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="district">
-                Район и тип объекта
-              </label>
-              <input
-                className="input"
-                id="district"
-                placeholder="Адлер, склад / Сочи, квартира / Красная Поляна, отель..."
-              />
-            </div>
-            <button className="btn-primary" type="button">
-              Рассчитать стоимость
-            </button>
-            <p className="hero-note" style={{ marginTop: 8 }}>
-              Свяжемся с вами в течение 15–30 минут и подтвердим цену под ваш объект.
-            </p>
-          </div>
+          <ContactForm variant="pricing" />
         </section>
       </div>
     </>

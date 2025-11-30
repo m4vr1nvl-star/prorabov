@@ -9,6 +9,10 @@ export default function BlogIndexPage() {
           name="description"
           content="Статьи о том, как выбрать разнорабочих в Сочи, сколько стоит рабочий на день и какие задачи удобнее поручить подсобникам."
         />
+        <meta property="og:title" content="Блог — Разнорабочие Сочи" />
+        <meta property="og:description" content="Статьи о том, как выбрать разнорабочих в Сочи." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://raznorabochie-sochi.ru/blog" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>

@@ -1,6 +1,8 @@
 import "../styles/globals.css";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Главная" },
@@ -16,47 +18,73 @@ const navLinks = [
 function Layout({ children }) {
   const router = useRouter();
   const currentPath = router.pathname;
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleCallClick = () => {
+    const phone = "+7XXXXXXXXXX";
+    window.location.href = `tel:${phone}`;
+  };
 
   return (
-    <div className="main-layout">
-      <header className="header">
-        <nav className="nav">
-          <div className="nav-left">
-            <div className="nav-logo">Разнорабочие Сочи</div>
-            <div className="nav-tagline">Разнорабочие на день по фиксированной цене</div>
-          </div>
-          <div className="nav-center">
-            {navLinks.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? currentPath === "/"
-                  : currentPath.startsWith(link.href);
-
-              return (
-                <Link key={link.href} href={link.href} legacyBehavior>
-                  <a className={isActive ? "nav-link-active" : undefined}>{link.label}</a>
-                </Link>
-              );
-            })}
-          </div>
-          <div className="nav-right">
-            <a className="nav-phone" href="tel:+7XXXXXXXXXX">
-              +7 (XXX) XXX-XX-XX
-            </a>
-            <button className="btn-nav-cta" type="button">
-              Заказать звонок
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      </Head>
+      <div className="main-layout">
+        <header className="header">
+          <nav className="nav">
+            <div className="nav-left">
+              <Link href="/" className="nav-logo-link">
+                <div className="nav-logo">Разнорабочие Сочи</div>
+                <div className="nav-tagline">Разнорабочие на день по фиксированной цене</div>
+              </Link>
+            </div>
+            <button 
+              className="nav-mobile-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Открыть меню"
+            >
+              ☰
             </button>
-          </div>
-        </nav>
-      </header>
+            <div className={`nav-center ${mobileMenuOpen ? "nav-center-open" : ""}`}>
+              {navLinks.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? currentPath === "/"
+                    : currentPath.startsWith(link.href);
 
-      <main className="page-root">{children}</main>
+                return (
+                  <Link 
+                    key={link.href} 
+                    href={link.href}
+                    className={isActive ? "nav-link-active" : undefined}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="nav-right">
+              <a className="nav-phone" href="tel:+7XXXXXXXXXX">
+                +7 (XXX) XXX-XX-XX
+              </a>
+              <button className="btn-nav-cta" type="button" onClick={handleCallClick}>
+                Заказать звонок
+              </button>
+            </div>
+          </nav>
+        </header>
 
-      <footer className="footer">
-        Разнорабочие Сочи — разнорабочие на день по фиксированной цене. Работаем по
-        всему Большому Сочи: от Дагомыса до Красной Поляны.
-      </footer>
-    </div>
+        <main className="page-root">{children}</main>
+
+        <footer className="footer">
+          Разнорабочие Сочи — разнорабочие на день по фиксированной цене. Работаем по
+          всему Большому Сочи: от Дагомыса до Красной Поляны.
+        </footer>
+      </div>
+    </>
   );
 }
 

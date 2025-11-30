@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ContactForm from "../components/ContactForm";
 
 export default function OtzyvyPage() {
   return (
@@ -9,6 +10,10 @@ export default function OtzyvyPage() {
           name="description"
           content="Отзывы клиентов о сервисе Разнорабочие Сочи: частные клиенты и бизнес о погрузочных работах, подсобниках и помощи на объектах."
         />
+        <meta property="og:title" content="Отзывы клиентов — Разнорабочие Сочи" />
+        <meta property="og:description" content="Отзывы клиентов о сервисе Разнорабочие Сочи." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://raznorabochie-sochi.ru/otzyvy" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>
@@ -69,42 +74,7 @@ export default function OtzyvyPage() {
             Оставьте заявку — подберём рабочих под вашу задачу и согласуем
             удобное время.
           </p>
-          <div className="form-card">
-            <div className="form-group">
-              <label className="label" htmlFor="name">
-                Имя
-              </label>
-              <input className="input" id="name" placeholder="Как к вам обращаться" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="phone">
-                Телефон
-              </label>
-              <input className="input" id="phone" placeholder="Ваш номер телефона" />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="district">
-                Район
-              </label>
-              <input className="input" id="district" placeholder="Сочи, Адлер, Дагомыс, Красная Поляна..." />
-            </div>
-            <div className="form-group">
-              <label className="label" htmlFor="task">
-                Какие работы нужны
-              </label>
-              <input
-                className="input"
-                id="task"
-                placeholder="Погрузка, подсобные работы, помощь на стройке..."
-              />
-            </div>
-            <button className="btn-primary" type="button">
-              Оставить заявку
-            </button>
-            <p className="hero-note" style={{ marginTop: 8 }}>
-              Свяжемся с вами в течение 15–30 минут в рабочее время.
-            </p>
-          </div>
+          <ContactForm />
         </section>
       </div>
     </>
