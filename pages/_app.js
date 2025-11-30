@@ -21,7 +21,7 @@ function Layout({ children }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleCallClick = () => {
-    const phone = "+7XXXXXXXXXX";
+    const phone = "+79138907262";
     window.location.href = `tel:${phone}`;
   };
 
@@ -67,8 +67,8 @@ function Layout({ children }) {
               })}
             </div>
             <div className="nav-right">
-              <a className="nav-phone" href="tel:+7XXXXXXXXXX">
-                +7 (XXX) XXX-XX-XX
+              <a className="nav-phone" href="tel:+79138907262">
+                +7 (913) 890-72-62
               </a>
               <button className="btn-nav-cta" type="button" onClick={handleCallClick}>
                 Заказать звонок
