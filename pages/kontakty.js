@@ -51,7 +51,7 @@ export default function KontaktyPage() {
         <meta property="og:title" content="Контакты — Разнорабочие Сочи" />
         <meta property="og:description" content="Контакты сервиса Разнорабочие Сочи: телефон +7 (913) 890-72-62, адрес ул. Ленина 129, Адлер." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/kontakty" />
+        <link rel="canonical" href="https://prorabov.ru/kontakty" />
         <JsonLd data={contactSchema} />
       </Head>
       <div className="container">

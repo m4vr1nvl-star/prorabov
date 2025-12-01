@@ -8,7 +8,7 @@ export default function HomePage() {
     "@type": "LocalBusiness",
     "name": "Разнорабочие Сочи",
     "description": "Разнорабочие на день в Сочи по фиксированной цене",
-    "url": "https://raznorabochie-sochi.ru",
+    "url": "https://prorabov.ru",
     "telephone": "+79138907262",
     "priceRange": "₽₽",
     "areaServed": {
@@ -87,7 +87,7 @@ export default function HomePage() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Разнорабочие Сочи — разнорабочие на день в Сочи" />
         <meta name="twitter:description" content="Разнорабочие на день в Сочи по фиксированной цене — 4500 ₽ за 8 часов работы." />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/" />
+        <link rel="canonical" href="https://prorabov.ru/" />
         <JsonLd data={organizationSchema} />
         <JsonLd data={serviceSchema} />
       </Head>

@@ -13,7 +13,7 @@ export default function OtzyvyPage() {
         <meta property="og:title" content="Отзывы клиентов — Разнорабочие Сочи" />
         <meta property="og:description" content="Отзывы клиентов о сервисе Разнорабочие Сочи." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/otzyvy" />
+        <link rel="canonical" href="https://prorabov.ru/otzyvy" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>

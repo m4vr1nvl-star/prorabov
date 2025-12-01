@@ -13,7 +13,7 @@ export default function CenyPage() {
         <meta property="og:title" content="Цены на услуги разнорабочих в Сочи" />
         <meta property="og:description" content="Фиксированная цена на услуги разнорабочих в Сочи — 4500 ₽ за 8 часов работы." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/ceny" />
+        <link rel="canonical" href="https://prorabov.ru/ceny" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>
