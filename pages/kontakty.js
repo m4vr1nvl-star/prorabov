@@ -134,3 +134,9 @@ export default function KontaktyPage() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}

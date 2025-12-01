@@ -80,3 +80,9 @@ export default function PortfolioPage() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}

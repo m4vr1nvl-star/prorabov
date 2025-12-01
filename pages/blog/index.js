@@ -60,3 +60,9 @@ export default function BlogIndexPage() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}

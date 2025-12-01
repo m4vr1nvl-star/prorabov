@@ -156,3 +156,9 @@ export default function ONasPage() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}
