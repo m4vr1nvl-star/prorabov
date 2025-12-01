@@ -13,7 +13,7 @@ export default function ONasPage() {
         <meta property="og:title" content="О сервисе «Разнорабочие Сочи»" />
         <meta property="og:description" content="Кто стоит за сервисом Разнорабочие Сочи: опыт в стройке и ремонте, подход к работе." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/o-nas" />
+        <link rel="canonical" href="https://prorabov.ru/o-nas" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>

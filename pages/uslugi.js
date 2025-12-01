@@ -13,7 +13,7 @@ export default function UslugiPage() {
         <meta property="og:title" content="Услуги разнорабочих в Сочи — Разнорабочие Сочи" />
         <meta property="og:description" content="Услуги разнорабочих в Сочи для частных и юридических лиц. Фиксированная цена за смену." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/uslugi" />
+        <link rel="canonical" href="https://prorabov.ru/uslugi" />
       </Head>
 
       <div className="container">

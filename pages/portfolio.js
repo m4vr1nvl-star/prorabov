@@ -13,7 +13,7 @@ export default function PortfolioPage() {
         <meta property="og:title" content="Портфолио работ — Разнорабочие Сочи" />
         <meta property="og:description" content="Примеры работ сервиса Разнорабочие Сочи: погрузка, разгрузка, подсобные работы." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/portfolio" />
+        <link rel="canonical" href="https://prorabov.ru/portfolio" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>

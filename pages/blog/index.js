@@ -12,7 +12,7 @@ export default function BlogIndexPage() {
         <meta property="og:title" content="Блог — Разнорабочие Сочи" />
         <meta property="og:description" content="Статьи о том, как выбрать разнорабочих в Сочи." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://raznorabochie-sochi.ru/blog" />
+        <link rel="canonical" href="https://prorabov.ru/blog" />
       </Head>
       <div className="container">
         <section className="section" style={{ marginTop: 0 }}>
