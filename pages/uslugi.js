@@ -122,3 +122,9 @@ export default function UslugiPage() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}

@@ -80,3 +80,9 @@ export default function OtzyvyPage() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}

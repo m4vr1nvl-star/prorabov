@@ -138,3 +138,9 @@ export default function CenyPage() {
     </>
   );
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}
