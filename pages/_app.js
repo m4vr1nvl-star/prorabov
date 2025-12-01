@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const navLinks = [
   { href: "/", label: "Главная" },
@@ -19,6 +19,40 @@ function Layout({ children }) {
   const router = useRouter();
   const currentPath = router.pathname;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const handleRouteChange = () => {
+      setMobileMenuOpen(false);
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
+    }
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [mobileMenuOpen, router.events]);
 
   const handleCallClick = () => {
     const phone = "+79138907262";
@@ -33,7 +67,7 @@ function Layout({ children }) {
       </Head>
       <div className="main-layout">
         <header className="header">
-          <nav className="nav">
+          <nav className="nav" ref={navRef}>
             <div className="nav-left">
               <Link href="/" className="nav-logo-link">
                 <div className="nav-logo">Разнорабочие Сочи</div>
@@ -43,9 +77,9 @@ function Layout({ children }) {
             <button 
               className="nav-mobile-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Открыть меню"
+              aria-label={mobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
             >
-              ☰
+              {mobileMenuOpen ? "✕" : "☰"}
             </button>
             <div className={`nav-center ${mobileMenuOpen ? "nav-center-open" : ""}`}>
               {navLinks.map((link) => {
