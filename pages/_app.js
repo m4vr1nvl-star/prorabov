@@ -28,10 +28,6 @@ function Layout({ children }) {
       }
     };
 
-    const handleRouteChange = () => {
-      setMobileMenuOpen(false);
-    };
-
     const handleEscape = (event) => {
       if (event.key === "Escape") {
         setMobileMenuOpen(false);
@@ -42,17 +38,30 @@ function Layout({ children }) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("touchstart", handleClickOutside);
       document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
-
-    router.events.on("routeChangeStart", handleRouteChange);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setMobileMenuOpen(false);
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
       router.events.off("routeChangeStart", handleRouteChange);
     };
-  }, [mobileMenuOpen, router.events]);
+  }, [router.events]);
 
   const handleCallClick = () => {
     const phone = "+79138907262";
@@ -78,10 +87,16 @@ function Layout({ children }) {
               className="nav-mobile-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? "✕" : "☰"}
             </button>
-            <div className={`nav-center ${mobileMenuOpen ? "nav-center-open" : ""}`}>
+            <div 
+              id="mobile-navigation"
+              className={`nav-center ${mobileMenuOpen ? "nav-center-open" : ""}`}
+              aria-hidden={!mobileMenuOpen}
+            >
               {navLinks.map((link) => {
                 const isActive =
                   link.href === "/"
