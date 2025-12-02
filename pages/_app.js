@@ -28,8 +28,31 @@ function Layout({ children }) {
   const currentPath = router.pathname;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Определяем, мобильное ли устройство
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  // Обработчики для мобильного меню
+  useEffect(() => {
+    if (!isMobile) {
+      // На desktop всегда закрываем мобильное меню и разрешаем скролл
+      setMobileMenuOpen(false);
+      document.body.style.overflow = "";
+      return;
+    }
+
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
         setMobileMenuOpen(false);
@@ -57,11 +80,14 @@ function Layout({ children }) {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "";
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, isMobile]);
 
+  // Закрываем меню при смене маршрута
   useEffect(() => {
     const handleRouteChange = () => {
-      setMobileMenuOpen(false);
+      if (isMobile) {
+        setMobileMenuOpen(false);
+      }
     };
 
     router.events.on("routeChangeStart", handleRouteChange);
@@ -69,11 +95,19 @@ function Layout({ children }) {
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
     };
-  }, [router.events]);
+  }, [router.events, isMobile]);
 
-  const handleCallClick = () => {
+  const handleCallClick = (e) => {
+    e.preventDefault();
     const phone = "+79138907262";
     window.location.href = `tel:${phone}`;
+  };
+
+  const handleLinkClick = () => {
+    // Закрываем меню только на мобильных
+    if (isMobile) {
+      setMobileMenuOpen(false);
+    }
   };
 
   return (
@@ -103,7 +137,7 @@ function Layout({ children }) {
             <div 
               id="mobile-navigation"
               className={`nav-center ${mobileMenuOpen ? "nav-center-open" : ""}`}
-              aria-hidden={!mobileMenuOpen}
+              aria-hidden={isMobile && !mobileMenuOpen}
             >
               {navLinks.map((link) => {
                 const isActive =
@@ -116,7 +150,7 @@ function Layout({ children }) {
                     key={link.href} 
                     href={link.href}
                     className={isActive ? "nav-link-active" : undefined}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={handleLinkClick}
                   >
                     {link.label}
                   </Link>
