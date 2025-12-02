@@ -33,7 +33,8 @@ const nextConfig = {
   },
   
   // Оптимизация для продакшн
-  compress: true,
+  // compress отключен - Vercel использует HTTP/2 со встроенным сжатием
+  compress: false,
   poweredByHeader: false,
 };
 
