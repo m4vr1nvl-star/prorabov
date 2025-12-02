@@ -180,6 +180,54 @@ function Layout({ children }) {
 }
 
 export default function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  // Инициализация Яндекс.Метрики
+  useEffect(() => {
+    // Загружаем скрипт Яндекс.Метрики
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {
+        if (document.scripts[j].src === r) { return; }
+      }
+      k=e.createElement(t);
+      a=e.getElementsByTagName(t)[0];
+      k.async=1;
+      k.src=r;
+      a.parentNode.insertBefore(k,a);
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    // Инициализируем счетчик
+    window.ym = window.ym || function() {
+      (window.ym.a = window.ym.a || []).push(arguments);
+    };
+    window.ym.l = 1 * new Date();
+
+    window.ym(105619758, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
+      ecommerce: "dataLayer"
+    });
+  }, []);
+
+  // Отслеживание переходов между страницами
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (typeof window.ym !== 'undefined') {
+        window.ym(105619758, 'hit', url);
+      }
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <div className={inter.className}>
       <Layout>
